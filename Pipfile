@@ -10,4 +10,5 @@ mysql-connector-python = "*"
 
 [requires]
 python_version = "3.12"
-python_full_version = "3.12.7"
+# Remove the comment below to specify the full Python version
+# python_full_version = "3.12.7"
