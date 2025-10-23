@@ -2,7 +2,7 @@
 
 import logging
 import logging.handlers
-from application_name.settings import Settings
+from Recipes_and_Ingredients.settings import Settings
 import os
 
 class LoggingService():

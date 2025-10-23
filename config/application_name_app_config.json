@@ -1,8 +1,8 @@
 {
 	"meta":{
 		"version": "v1",
-		"app_name": "Application Name",
-		"log_prefix": "application_name"
+		"app_name": "Recipes and Ingredients Application",
+		"log_prefix": "Recipes_and_Ingredients"
 	},
 	"database":{
 		"pool":{

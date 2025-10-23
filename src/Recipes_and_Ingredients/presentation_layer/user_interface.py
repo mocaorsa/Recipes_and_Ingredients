@@ -1,7 +1,7 @@
 """Implements the applicatin user interface."""
 
-from application_name.application_base import ApplicationBase
-from application_name.service_layer.app_services import AppServices
+from Recipes_and_Ingredients.application_base import ApplicationBase
+from Recipes_and_Ingredients.service_layer.app_services import AppServices
 import inspect
 import json
 
