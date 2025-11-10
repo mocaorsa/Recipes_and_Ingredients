@@ -1,8 +1,11 @@
 """Defines the MySQLPersistenceWrapper class."""
 
 from Recipes_and_Ingredients.application_base import ApplicationBase
-from mysql import connector
-from mysql.connector.pooling import (MySQLConnectionPool)
+#20251026 Added for MySQL.connector instead of just mysql
+#from mysql import connector
+import mysql.connector as connector
+#from mysql.connector.pooling import (MySQLConnectionPool)
+from connector.pooling import (MySQLConnectionPool)
 import inspect
 import json
 

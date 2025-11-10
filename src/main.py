@@ -1,6 +1,8 @@
 """Entry point for the Employee Training Application."""
 
 import json
+#20251026 Added for MySQL connection testing
+#import mysql.connector
 from argparse import ArgumentParser
 from Recipes_and_Ingredients.presentation_layer.user_interface import UserInterface
 
