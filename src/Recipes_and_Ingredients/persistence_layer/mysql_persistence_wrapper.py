@@ -1,4 +1,5 @@
 """Defines the MySQLPersistenceWrapper class."""
+#trouble still 11/10/2025
 
 from Recipes_and_Ingredients.application_base import ApplicationBase
 #20251026 Added for MySQL.connector instead of just mysql
