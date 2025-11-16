@@ -5,7 +5,8 @@ import json
 #import mysql.connector
 from argparse import ArgumentParser
 from Recipes_and_Ingredients.presentation_layer.user_interface import UserInterface
-
+#20251026 Added for MySQL connection testing
+from Recipes_and_Ingredients.persistence_layer.mysql_persistence_wrapper import MySQLPersistenceWrapper
 
 
 def main():
@@ -17,10 +18,19 @@ def main():
 		with open(args.configfile, 'r') as f:
 			config = json.loads(f.read())
 
-	ui = UserInterface(config)
-	ui.start()
-			
-		
+	# Uncomment to run the User Interface
+	#ui = UserInterface(config)
+	#ui.start()
+
+	#More debugging added on 20251110
+	app_services = app_services(config)
+	results - app_services.get_all_ingredients()
+
+	for row in results:
+			print(f'{row(1)} {row(2)} {row(3)} {row(4)}')
+
+	#Use this for aquick MySQL select all ingredients test
+	db = MySqlSelectAllIngredientsTest(config)	
 
 
 def configure_and_parse_commandline_arguments():

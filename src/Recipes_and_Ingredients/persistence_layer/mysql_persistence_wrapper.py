@@ -38,16 +38,18 @@ class MySQLPersistenceWrapper(ApplicationBase):
 		
 
 		# SQL String Constants
-
-
-
-
+		#Added 11/10/2025
+		self.SELECT_ALL_INGREDIENTS_SQL = \
+			f'SELECT id, ingredient_name, ingredient_type, quantity, unit_of_measure ' \
+			f'FROM ingredients'
 
 	# MySQLPersistenceWrapper Methods
 
-
-
-
+	#Added 11/10/2025
+	def select_all_ingredients(self)->list:
+		"""Selects all ingredients from the database."""
+		self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Executing SQL: {self.SELECT_ALL_INGREDIENTS_SQL}')
+		return self._execute_select_query(self.SELECT_ALL_INGREDIENTS_SQL)
 
 		##### Private Utility Methods #####
 

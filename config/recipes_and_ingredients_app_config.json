@@ -1,12 +1,12 @@
 {"recipes_and_ingredients_app_config.json"
 	"meta":{
 		"version": "v1",
-		"app_name": "Application Name",
-		"log_prefix": "Recipe_and_Ingredients"
+		"app_name": "Recipes and Ingredients",
+		"log_prefix": "Recipes_and_Ingredients"
 	},
 	"database":{
 		"pool":{
-			"name": "Recipe_and_Ingredients_db_bool",
+			"name": "Recipes_and_Ingredients_db_bool",
 			"size": 10,
 			"reset_session": true
 		},
