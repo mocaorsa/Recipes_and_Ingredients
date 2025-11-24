@@ -2,7 +2,7 @@
 
 from Recipes_and_Ingredients.application_base import ApplicationBase
 from Recipes_and_Ingredients.service_layer.app_services import AppServices
-from PrettyTable import prettytable
+from prettytable import PrettyTable 
 import inspect
 import json
 import sys
@@ -18,13 +18,13 @@ class UserInterface(ApplicationBase):
         self.DB = AppServices(config)
         self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}:It works!')
 
-    def display_menu
+    def display_menu(self)->None:
         print(f'\n\n\t\tRecipes and Ingredients App')
         print()
         print(f'\t\tIngredients: {self.DB.get_all_ingredients()}')
 
 
-    def process_menu_choice
+    def process_menu_choice(self)->None:
         menu_choice = input("\tSelection: ")
         match menu_choice[0]:
             case '1': self.list_ingredients
@@ -36,16 +36,19 @@ class UserInterface(ApplicationBase):
             results = self.app_services.get_all_ingredients()
             table = Prettytable()
             table.fieldnames = ['Ingredient', ] #add in all the ingredient headers
-            for row in results
+            for row in results:
                 table.add_row(row[0], row[1], row[2], row[3])
             print(results)
 
         except(Exception) as e:
             self._logger.log_error(f'{inspect.currentframe().f_code.co_name}: {e}')
     def start(self): 
-        run until the user selects 6
+        #run until the user selects 6
         while True:
-            
+            self.display_menu() 
+            self.process_menu_choice()      
+            if menu_choice[0] == '6':
+                break   
 
     def start(self):
         """Start main user interface."""

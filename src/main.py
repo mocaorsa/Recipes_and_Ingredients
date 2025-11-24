@@ -12,13 +12,16 @@ from Recipes_and_Ingredients.persistence_layer.mysql_persistence_wrapper import 
 def main():
 	"""Entry point."""
 	args = configure_and_parse_commandline_arguments()
-
+    # the application loads the Config file and configures a dictionary could be called config_dict and used throughout the app
 	if args.configfile:
 		config = None
 		with open(args.configfile, 'r') as f:
 			config = json.loads(f.read())
 
-	# Uncomment to run the User Interface
+	# That dictionary then gets passed to the User Interface
+	# Uncomment to run the User Interface 
+	# 	which is initialized in the user_interface.py file, chaining the configuration throughout the app
+	#   Everything boils down to the MySQLPersistenceWrapper class for data access
 	#ui = UserInterface(config)
 	#ui.start()
 
@@ -28,7 +31,8 @@ def main():
 
 	for row in results:
 			print(f'{row(1)} {row(2)} {row(3)} {row(4)}')
-
+	print(f'({app_services.get_all_ingredients_as_json})')
+	
 	#Use this for aquick MySQL select all ingredients test
 	db = MySqlSelectAllIngredientsTest(config)	
 

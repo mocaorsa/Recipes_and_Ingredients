@@ -1,4 +1,4 @@
-{"recipes_and_ingredients_app_config.json"
+{
 	"meta":{
 		"version": "v1",
 		"app_name": "Recipes and Ingredients",
@@ -9,6 +9,7 @@
 			"name": "Recipes_and_Ingredients_db_bool",
 			"size": 10,
 			"reset_session": true
+			
 		},
 		"connection":{
 			"config":{
