@@ -1,0 +1,72 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+.localized
+
+# Build artifacts
+*.o
+*.lo
+*.la
+*.al
+*.pyc
+*.pyo
+*.swp
+*.swo
+*.bak
+*.orig
+*.rej
+*.log
+*.tmp
+*.temp
+*.cache
+*.suo
+*.user
+*.ilk
+*.pdb
+*.obj
+*.exe
+*.dll
+*.lib
+*.so
+*.a
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcshareddata/
+*.xcworkspace/xcshareddata/
+DerivedData/
+
+# IDE-specific files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Dependencies
+node_modules/
+vendor/
+target/
+build/
+dist/
+
+# Configuration files
+.env
+.flaskenv
+config.local.js
+config.development.js
+config.production.js
+
+# Logs and temporary files
+logs/
+tmp/
+temp/
+
+# Other common ignored items
+*~
+*.DS_Store
+.project
+.settings
+.cproject
+.buildpath
