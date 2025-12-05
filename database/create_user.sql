@@ -2,17 +2,10 @@
  Drop and create the employee_training_user
 ********************************************/
 -- Drop user if exists
-DROP USER IF EXISTS 'employee_training_user'@'%';
+DROP USER IF EXISTS 'recipes_and_ingredients_user'@'%';
 
 -- Create user if not exists
-CREATE USER IF NOT EXISTS 'employee_training_user'@'%';
-GRANT ALL PRIVILEGES ON *.* TO 'employee_training_user'@'%';
-ALTER USER 'employee_training_user'@'%'
-    REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0
-    MAX_CONNECTIONS_PER_HOUR 0
-    MAX_UPDATES_PER_HOUR 0
-    MAX_USER_CONNECTIONS 0;
-GRANT ALL PRIVILEGES ON `employee_training_user_%`.*
-    TO 'employee_training_user'@'%';
-GRANT ALL PRIVILEGES ON `employee_training`.*
-    TO 'employee_training_user'@'%' WITH GRANT OPTION;
+CREATE USER IF NOT EXISTS 'recipes_and_ingredients_user'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE ON `recipes_and_ingredients`.* TO 'recipes_and_ingredients_user'@'localhost'; ALTER USER 'recipes_and_ingredients_user'@'localhost' ;
+
+FLUSH PRIVILEGES;

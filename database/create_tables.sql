@@ -1,77 +1,111 @@
+
+
+
 /* *************************************************************
-Drop and Create the tables for the employee_training database.
+Drop and Create the tables for the recipes_and_ingredients database.
 *************************************************************** */
--- Switch to employee_training database
-USE employee_training;
+-- Switch to recipes_and_ingredients database
+USE recipes_and_ingredients;
 
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 -- -------------------------------
--- EMPLOYEES TABLE
+-- RECIPES TABLE
 -- Drop the table if it exists
-DROP TABLE IF EXISTS employees;
+DROP TABLE IF EXISTS 'recipes';
 -- Create the table
-CREATE TABLE IF NOT EXISTS employees (
-   `id` int(11) NOT NULL,
-   `first_name` varchar(25) NOT NULL,
-   `middle_name` varchar(25) NOT NULL,
-   `last_name` varchar(25) NOT NULL,
-   `birthday` varchar(25) NOT NULL,
-   `gender` char(1) NOT NULL
-);-- Designate the `id` column as the primary key
+CREATE TABLE IF NOT EXISTS 'recipes' (
+  `recipe_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `recipe_name` varchar(25) NOT NULL,
+  `recipe_cuisine` varchar(25) NOT NULL,
+  `recipe_servings` int NOT NULL,
+  PRIMARY KEY (`recipe_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Store recipe data';
+--
+-- RELATIONSHIPS FOR TABLE `recipes`:
+--
+COMMIT;
 
-ALTER TABLE employees
-   ADD PRIMARY KEY (`id`);
-
--- Make `id` column auto increment on inserts
-ALTER TABLE employees
-   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 -- ---------------------------------
--- COURSES TABLE
+-- INGREDIENTS TABLE
 -- Drop the table if it exists
-DROP TABLE IF EXISTS courses;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
--- Create the table
-CREATE TABLE IF NOT EXISTS courses (
-   `id` int(11) NOT NULL,
-   `title` varchar(100) NOT NULL,
-   `description` varchar(250) NOT NULL
-);
+DROP TABLE IF EXISTS `ingredients`;
+CREATE TABLE IF NOT EXISTS `ingredients` (
+  `ingredient_name` varchar(25) NOT NULL,
+  `ingredient_unit` varchar(25) NOT NULL,
+  `ingredient_qty` double NOT NULL,
+  `ingredient_id` int UNSIGNED NOT NULL,
+  PRIMARY KEY (`ingredient_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Store ingredient data';
 
--- Add primary key
-ALTER TABLE courses
-   ADD PRIMARY KEY (`id`);
+--
+-- RELATIONSHIPS FOR TABLE `ingredients`:
+--
+COMMIT;
 
--- Make `id` column AUTO INCREMENT
-ALTER TABLE courses
-   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 -- ---------------------------------
--- EMPLOYEE_TRAINING_XREF TABLE
+-- RECIPE_INGREDIENTS_XREF TABLE
 -- Drop employee_training_xref table if it exists
-DROP TABLE IF EXISTS employee_training_xref;
--- Create employee_training table
-CREATE TABLE employee_training_xref (
-   `employee_id` int(11) NOT NULL,
-   `course_id` int(11) NOT NULL,
-   `start_date` varchar(25) NOT NULL,
-   `end_date` varchar(25) NOT NULL,
-   `status` varchar(25) NOT NULL
-);
--- Create indexes on employee_id and course_id columns
-ALTER TABLE employee_training_xref
-   ADD KEY `employee_training_xref_ibfk_1` (`employee_id`),
-   ADD KEY `employee_training_xref_ibfk_2` (`course_id`);
 
--- Add Cascade Delete Constraint on employee_id column
-ALTER TABLE employee_training_xref
-   ADD CONSTRAINT `employee_training_ibfk_1`
-   FOREIGN KEY (`employee_id`) REFERENCES employees (`id`)
-   ON DELETE CASCADE
-   ON UPDATE CASCADE;
 
--- Add Cascade Delete Constraint on course_id column
-ALTER TABLE employee_training_xref
-   ADD CONSTRAINT `employee_training_ibfk_2`
-   FOREIGN KEY (`course_id`) REFERENCES courses (`id`)
-   ON UPDATE CASCADE;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `recipes_and_ingredients`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recipe_ingredient_xref`
+--
+DROP TABLE IF EXISTS `recipe_ingredient_xref`;
+CREATE TABLE IF NOT EXISTS `recipe_ingredient_xref` (
+  `recipe_id` int UNSIGNED NOT NULL,
+  `ingredient_id` int UNSIGNED NOT NULL,
+  `purchase_date` date NOT NULL,
+  `expiration_date` date NOT NULL,
+  `status` varchar(25) NOT NULL,
+  UNIQUE KEY `recipe_id` (`recipe_id`),
+  KEY `ingredient_id_fk_constraint` (`ingredient_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Relates the recipes and ingredients on hand.';
+
+--
+-- RELATIONSHIPS FOR TABLE `recipe_ingredient_xref`:
+--   `ingredient_id`
+--       `ingredients` -> `ingredient_id`
+--   `recipe_id`
+--       `recipes` -> `recipe_id`
+--
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `recipe_ingredient_xref`
+--
+ALTER TABLE `recipe_ingredient_xref`
+  ADD CONSTRAINT `ingredient_id_fk_constraint` FOREIGN KEY (`ingredient_id`) REFERENCES `ingredients` (`ingredient_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `recipe_id_fk_constraint` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`recipe_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
