@@ -13,9 +13,9 @@ SET time_zone = "+00:00";
 -- -------------------------------
 -- RECIPES TABLE
 -- Drop the table if it exists
-DROP TABLE IF EXISTS 'recipes';
+DROP TABLE IF EXISTS recipes;
 -- Create the table
-CREATE TABLE IF NOT EXISTS 'recipes' (
+CREATE TABLE IF NOT EXISTS recipes (
   `recipe_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `recipe_name` varchar(25) NOT NULL,
   `recipe_cuisine` varchar(25) NOT NULL,
@@ -35,8 +35,8 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-DROP TABLE IF EXISTS `ingredients`;
-CREATE TABLE IF NOT EXISTS `ingredients` (
+DROP TABLE IF EXISTS ingredients;
+CREATE TABLE IF NOT EXISTS ingredients (
   `ingredient_name` varchar(25) NOT NULL,
   `ingredient_unit` varchar(25) NOT NULL,
   `ingredient_qty` double NOT NULL,
@@ -74,8 +74,8 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `recipe_ingredient_xref`
 --
-DROP TABLE IF EXISTS `recipe_ingredient_xref`;
-CREATE TABLE IF NOT EXISTS `recipe_ingredient_xref` (
+DROP TABLE IF EXISTS recipe_ingredient_xref;
+CREATE TABLE IF NOT EXISTS recipe_ingredient_xref (
   `recipe_id` int UNSIGNED NOT NULL,
   `ingredient_id` int UNSIGNED NOT NULL,
   `purchase_date` date NOT NULL,
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `recipe_ingredient_xref` (
 --
 -- Constraints for table `recipe_ingredient_xref`
 --
-ALTER TABLE `recipe_ingredient_xref`
+ALTER TABLE recipe_ingredient_xref
   ADD CONSTRAINT `ingredient_id_fk_constraint` FOREIGN KEY (`ingredient_id`) REFERENCES `ingredients` (`ingredient_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `recipe_id_fk_constraint` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`recipe_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;

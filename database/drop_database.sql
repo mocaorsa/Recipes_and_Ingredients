@@ -10,7 +10,7 @@ SET time_zone = "+00:00";
 --
 -- Drop Database: `employee_training`
 --
-DROP DATABASE IF EXISTS employee_training;
+DROP DATABASE IF EXISTS recipes_and_ingredients;
 
 COMMIT;
 

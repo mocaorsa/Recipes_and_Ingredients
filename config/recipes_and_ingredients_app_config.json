@@ -1,19 +1,19 @@
 {
     "meta":{
         "version": "v1",
-        "app_name": "Employee Training",
-        "log_prefix": "employee_training"
+        "app_name": "Recipes_and_Ingredients",
+        "log_prefix": "recipes_and_ingredients"
     },
     "database": {
         "pool": {
-            "name": "emp_training_app_db_bool",
+            "name": "recipes_and_ingredients_db_bool",
             "size": 10,
             "reset_session": true
         },
         "connection":{
             "config":{
-                "database": "employee_training",
-                "user": "employee_training_user",
+                "database": "recipes_and_ingredients",
+                "user": "recipes_and_ingredients_user",
                 "host": "localhost",
                 "port": 3306
             }
